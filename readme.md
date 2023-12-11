@@ -1,0 +1,1 @@
+Webpack 5 for simple development without frameworks such as React, Vue, etc
