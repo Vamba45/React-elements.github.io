@@ -1,1 +1,1 @@
-Webpack 5 for simple development without frameworks such as React, Vue, etc
+Creating simple react elements with such react technologies as: hooks, react-router, redux
