@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 /* Components */
 import Counter from './components/Counter/Counter';
+import ModalWindow from './components/ModalWindow/ModalWindow';
 
 /* Styles */
 import './styles/style.scss';
@@ -13,6 +14,7 @@ const root = ReactDOM.createRoot(rootNode);
 // рендеринг в корневой элемент
 root.render(
     <>
+        <ModalWindow/>
         <Counter/>
     </>
 );
