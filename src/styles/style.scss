@@ -8,9 +8,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     .counter {
         margin-top: 150px;
+    }
+
+    .modal-window {
+        margin-top: 250px;
     }
 }
 

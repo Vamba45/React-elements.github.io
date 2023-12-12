@@ -6,14 +6,14 @@ export default function ModalWindow () {
     const [open, setOpen] = React.useState(false);
 
     return (
-       <>
+       <div className='modal-window'>
         <button onClick={() => setOpen(true)} className="open-modal-btn">
             Открыть окно
         </button>
         <Modal open={open} setOpen={setOpen}>
             <img src="../../assets/img/obs.webp" alt="" />
         </Modal>
-       </>
+       </div>
     )
 }
 
