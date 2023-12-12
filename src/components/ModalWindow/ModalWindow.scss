@@ -2,7 +2,7 @@
     background-color: #fff;
     width: 70%;
     max-width: 500px;
-    max-height: 300px;
+    max-height: 500px;
     padding: 40px 30px;
     border-radius: 10px;
     position: absolute;
@@ -11,6 +11,8 @@
     transform: translate(-50%, -50%);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease-in-out;
+
+    position: relative;
 }
 
 .open-modal-btn {
@@ -48,7 +50,52 @@
 }
 
 .icon {
+    width: 25px;
+    height: 25px;
 
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    cursor: pointer;
+
+    &::after {
+        content: '';
+
+        position: absolute;
+
+        bottom: 50%;
+        top: 50%;
+        left: 0;
+
+        height: 4px;
+        width: 100%;
+
+        background-color: red;
+
+        transform: rotate(45deg);
+
+        border-radius: 2px;
+    }
+
+    &::before {
+        content: '';
+
+        position: absolute;
+
+        height: 4px;
+        width: 100%;
+
+        bottom: 50%;
+        top: 50%;
+        left: 0;
+
+        transform: rotate(-45deg);
+
+        background-color: red;
+
+        border-radius: 2px;
+    }
 }
 
 .content {
