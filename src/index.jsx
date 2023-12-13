@@ -8,6 +8,7 @@ import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 
 /* Styles */
 import './styles/index.scss';
+import Quiz from './components/Quiz/Quiz.jsx';
 
 const rootNode = document.getElementById("app");    // элемент для рендеринга приложения React
 // получаем корневой элемент 
@@ -31,6 +32,7 @@ function Nav() {
                 <Link to="/">Главная</Link>  
                 <Link to="/counter">Счётчик</Link>  
                 <Link to="/modal">Модальное окно</Link>
+                <Link to="/quiz">Опросник</Link>
             </nav>)
 }
 
@@ -46,6 +48,7 @@ root.render(
                     } />
                 <Route path="/counter" element={<Counter />} />
                 <Route path="/modal" element={<ModalWindow />} />
+                <Route path="/quiz" element={<Quiz />} />
             </Routes>
         </div>
     </Router>

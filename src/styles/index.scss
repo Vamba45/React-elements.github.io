@@ -10,6 +10,7 @@ html {
 }
 
 body {
+    background-color: #eacbfb;
     .counter {
         margin-top: 150px;
     }
@@ -17,6 +18,21 @@ body {
     .modal-window {
         margin-top: 250px;
     }
+
+    .Quiz {
+        margin-top: 150px;
+    }
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a,
+a:hover,
+a:active {
+    color: black;
+    text-decoration: none;
 }
 
 #app {
@@ -40,6 +56,18 @@ nav {
     display: flex;
     flex-direction: row;
     gap: 30px;
+
+    a {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #3c005c;
+        text-shadow: 0 3px 18px #640e92;
+
+        &:hover {
+            color: #aaa703;
+            text-shadow: 0 3px 18px #adc212;
+        }
+    }
 }
 
 img {
