@@ -1,5 +1,7 @@
 import './Quiz.scss';
 
+import React from 'react';
+
 const questions = [
     {
         title: 'React - это ... ?',
@@ -31,16 +33,23 @@ function Result() {
 }
 
 export default function Quiz() {
+    const[step, setStep] = React.useState(0);
+    const question = questions[step];
+
+    console.log(question)
+
     return (
         <div className='Quiz'>
             <div className="progress">
                 <div style={{ }} className="progress__inner"></div>
             </div>
-            <h1>Что такое useState?</h1>
+            <h1>{question.title}</h1>
             <ul>
-                <li>Это функция для хранения данных компонента</li>
-                <li>Это глобальный стейт</li>
-                <li>Это когда на ты никому не нужен</li>
+                {
+                    question.variants.map((text) => (
+                        <li key={text}>{text}</li>
+                    ))
+                }
             </ul>
         </div>
     );
