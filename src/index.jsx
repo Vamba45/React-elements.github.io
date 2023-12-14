@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 /* Components */
 import Counter from './components/Counter/Counter';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
+import Skeleton from './components/Users/Skeleton.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -33,6 +34,7 @@ function Nav() {
                 <Link to="/counter">Счётчик</Link>  
                 <Link to="/modal">Модальное окно</Link>
                 <Link to="/quiz">Опросник</Link>
+                <Link to="/users">Список пользователей</Link>
             </nav>)
 }
 
@@ -49,6 +51,7 @@ root.render(
                 <Route path="/counter" element={<Counter />} />
                 <Route path="/modal" element={<ModalWindow />} />
                 <Route path="/quiz" element={<Quiz />} />
+                <Route path="/users" element={<Skeleton />} />
             </Routes>
         </div>
     </Router>
