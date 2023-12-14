@@ -36,15 +36,16 @@ export default function Quiz() {
     const[step, setStep] = React.useState(0);
     const question = questions[step];
 
+    const percentage = Math.floor(step / questions.length * 100);
+
     const onClickVariant = (index) => {
-        console.log(step, index);
         setStep(step + 1);
     };
 
     return (
         <div className='Quiz'>
             <div className="progress">
-                <div style={{ }} className="progress__inner"></div>
+                <div style={{ width: `${percentage}%` }} className="progress__inner"></div>
             </div>
             <h1>{question.title}</h1>
             <ul>
