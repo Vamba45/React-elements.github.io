@@ -36,7 +36,10 @@ export default function Quiz() {
     const[step, setStep] = React.useState(0);
     const question = questions[step];
 
-    console.log(question)
+    const onClickVariant = (index) => {
+        console.log(step, index);
+        setStep(step + 1);
+    };
 
     return (
         <div className='Quiz'>
@@ -46,8 +49,8 @@ export default function Quiz() {
             <h1>{question.title}</h1>
             <ul>
                 {
-                    question.variants.map((text) => (
-                        <li key={text}>{text}</li>
+                    question.variants.map((text, index) => (
+                        <li onClick={() => onClickVariant(index)} key={text}>{text}</li>
                     ))
                 }
             </ul>
