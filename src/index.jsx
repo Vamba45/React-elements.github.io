@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 import Counter from './components/Counter/Counter';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 import Skeleton from './components/Users/Skeleton.jsx';
+import User from './components/Users/User.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -51,7 +52,12 @@ root.render(
                 <Route path="/counter" element={<Counter />} />
                 <Route path="/modal" element={<ModalWindow />} />
                 <Route path="/quiz" element={<Quiz />} />
-                <Route path="/users" element={<Skeleton />} />
+                <Route path="/users" element={
+                    <>
+                        <Skeleton />
+                        <User/>
+                    </>
+                } />
             </Routes>
         </div>
     </Router>
