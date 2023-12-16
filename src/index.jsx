@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 /* Components */
 import Counter from './components/Counter/Counter.tsx';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
-import Skeleton from './components/Users/Skeleton.jsx';
 import Users from './components/Users/Users.jsx';
 
 /* Styles */
