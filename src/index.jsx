@@ -52,7 +52,9 @@ root.render(
                 <Route path="/counter" element={<Counter />} />
                 <Route path="/modal" element={<ModalWindow />} />
                 <Route path="/quiz" element={<Quiz />} />
-                <Route path="/users" element={<Users />} />
+                <Route path="/users" element={
+                    <Users isLoading={false}/>
+                } />
             </Routes>
         </div>
     </Router>
