@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 
 /* Components */
-import Counter from './components/Counter/Counter';
+import Counter from './components/Counter/Counter.tsx';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 import Skeleton from './components/Users/Skeleton.jsx';
-import User from './components/Users/User.jsx';
+import Users from './components/Users/Users.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -52,12 +52,7 @@ root.render(
                 <Route path="/counter" element={<Counter />} />
                 <Route path="/modal" element={<ModalWindow />} />
                 <Route path="/quiz" element={<Quiz />} />
-                <Route path="/users" element={
-                    <>
-                        <Skeleton />
-                        <User/>
-                    </>
-                } />
+                <Route path="/users" element={<Users />} />
             </Routes>
         </div>
     </Router>
