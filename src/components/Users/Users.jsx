@@ -8,6 +8,7 @@ export default function Users() {
   const [users, setUsers] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
+  const [inveties, setinveties] = React.useState([3, 1]);
 
   React.useEffect(() => {
       fetch('https://reqres.in/api/users')
@@ -24,6 +25,14 @@ export default function Users() {
 
   const onChangeSearchValue = (event) => {
     setSearchValue(event.target.value)
+  }
+
+  function onClickInvite(id) {
+    if(inveties.includes(id)) {
+      setinveties((prev) => prev.filter(_id => _id !== id));
+    } else {
+      setinveties((prev) => [...prev, id])
+    }
   }
 
   console.log(searchValue)
@@ -54,7 +63,10 @@ export default function Users() {
 
                 return fullName.includes(searchValue.toLowerCase()) || obj.email.includes(searchValue.toLocaleLowerCase());
               }).map((obj) => (
-                <User key={obj.id} {...obj}/>
+                <User onClickInvite={onClickInvite} 
+                      isInvited={inveties.includes(obj.id)} 
+                      key={obj.id} 
+                      {...obj}/>
               ))
             }
           </ul>

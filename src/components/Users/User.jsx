@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function User ({id, email, 
                             first_name, last_name,
-                            avatar}) { 
+                            avatar, onClickInvite, isInvited}) { 
     return (<>
                 <li>
                     <div>
@@ -17,7 +17,7 @@ export default function User ({id, email,
                             </p>
                         </div>
                     </div>
-                    <img className="action" src="assets\img\plus.svg" alt="Action" />
+                    <img onClick={() => onClickInvite(id)}  className="action" src={`assets\\img\\${isInvited ? "minus" : "plus"}.svg`} alt="Action" />
                 </li>
             </>);
 }
