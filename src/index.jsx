@@ -16,19 +16,6 @@ const rootNode = document.getElementById("app");    // элемент для р�
 // получаем корневой элемент 
 const root = ReactDOM.createRoot(rootNode);
 
-function Main({ children }) {
-    return (
-            <div className='main'>
-                <p>
-                    Этот репозиторий посвящён изучению 
-                    основ React и созданию 
-                    частоиспользуемых на html страницах 
-                    элементов
-                </p>
-            </div>
-        )
-}
-
 function Nav() {
     return (
     <>
@@ -51,11 +38,10 @@ function Nav() {
                 <div className='line'></div>
                 <div className='line'></div>
             </div>
-            <Link to="/">Главная</Link>  
             <Link to="/counter">Счётчик</Link>  
             <Link to="/modal">Модальное окно</Link>
             <Link to="/quiz">Опросник</Link>
-            <Link to="/users">Список пользователей</Link>
+            <Link to="/">Список пользователей</Link>
         </nav>
     </>)
 }
@@ -66,18 +52,10 @@ root.render(
         <div>
             <Nav/>
             <Routes>
-                <Route path="/" element={
-                        <Main>
-                        </Main>
-                    } />
-                <Route path="/counter" element={<Counter />} />
-                <Route path="/modal" element={<ModalWindow />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/users" element={
-                    <>
-                        <Users isLoading={true}/>
-                    </>
-                } />
+                <Route path="/counter" element={<Counter/>}/>
+                <Route path="/modal" element={<ModalWindow/>}/>
+                <Route path="/quiz" element={<Quiz/>}/>
+                <Route path="/" element={<Users isLoading={true}/>}/>
             </Routes>
         </div>
     </Router>
