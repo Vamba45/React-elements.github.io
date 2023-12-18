@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    background-color: #eacbfb;
+    background-color: #d0f0f8;
     .counter {
         margin-top: 150px;
     }
@@ -62,20 +62,33 @@ a:active {
 }
 
 nav {
-    margin-top: 25px;
+    background-color: #9fe6f7;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 30px;
+    flex-direction: column;
+
+    transform: translateX(-300px);
+    transition: transform 0.2s ease;
+
+    &.active {
+        transform: translateX(0);
+    }
 
     a {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        color: #3c005c;
-        text-shadow: 0 3px 18px #640e92;
+        font-size: 16px;
+        color: #004e5c;
+        padding: 15px;
 
         &:hover {
-            color: #aaa703;
-            text-shadow: 0 3px 18px #adc212;
+            color: #e3fffc;
+            background-color: rgb(51, 178, 178);
+            text-shadow: 0 3px 18px #12c2b0;
         }
     }
 }
@@ -85,4 +98,126 @@ img {
 
     width: 100%;
     height: 100%;
+}
+
+#navBtn {
+    cursor: pointer;
+
+    width: 30px;
+    height: 20px;
+    margin: 25px 25px 25px 15px;
+    gap: 0;
+
+    &.active {
+        .line {
+            transition: transform 0.2s ease;
+            &:nth-child(1) {
+                position: absolute;
+    
+                top: 43%; 
+                left: 0;
+
+                transform: rotate(45deg);
+            }   
+            &:nth-child(2) {
+                display: none;
+            }
+            &:nth-child(3) {
+                position: absolute;
+                bottom: 43%; 
+                left: 0;
+
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    .line {
+        width: 100%;
+        height: 3px;
+
+        background-color: #004e5c;
+        position: absolute;
+
+        &:nth-child(1) {
+            position: absolute;
+
+            top: 0; 
+            left: 0;
+        }   
+        &:nth-child(2) {
+            position: absolute;
+            top: 45%; 
+            left: 0;
+        }
+        &:nth-child(3) {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+        }
+    }
+}
+
+#navBtn {
+    position: relative;
+}
+
+#btnNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    cursor: pointer;
+
+    width: 30px;
+    height: 20px;
+    margin: 25px 25px 25px 15px;
+
+    &.active {
+        .horizont {
+            transition: transform 0.2s ease;
+            &:nth-child(1) {
+                position: absolute;
+    
+                top: 43%; 
+                left: 0;
+
+                transform: rotate(45deg);
+            }   
+            &:nth-child(2) {
+                display: none;
+            }
+            &:nth-child(3) {
+                position: absolute;
+                bottom: 43%; 
+                left: 0;
+
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .horizont {
+        width: 100%;
+        height: 3px;
+
+        background-color: #004e5c;
+        position: absolute;
+
+        &:nth-child(1) {
+            position: absolute;
+
+            top: 0; 
+            left: 0;
+        }   
+        &:nth-child(2) {
+            position: absolute;
+            top: 45%; 
+            left: 0;
+        }
+        &:nth-child(3) {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+        }
+    }
 }

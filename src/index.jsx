@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 import Counter from './components/Counter/Counter.tsx';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 import Users from './components/Users/Users.jsx';
+import Success from './components/Users/Succes.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -29,13 +30,34 @@ function Main({ children }) {
 }
 
 function Nav() {
-    return (<nav>
-                <Link to="/">Главная</Link>  
-                <Link to="/counter">Счётчик</Link>  
-                <Link to="/modal">Модальное окно</Link>
-                <Link to="/quiz">Опросник</Link>
-                <Link to="/users">Список пользователей</Link>
-            </nav>)
+    return (
+    <>
+        <div id="btnNav" 
+            onClick={() => {
+            btnNav.classList.toggle('active')
+            navBtn.classList.toggle('active')
+            document.querySelector('nav').classList.toggle('active')}}>
+            <div className='horizont'></div>
+            <div className='horizont'></div>
+            <div className='horizont'></div>
+        </div>
+        <nav>
+            <div id="navBtn" onClick={
+                () => {
+                    navBtn.classList.toggle('active')
+                    btnNav.classList.toggle('active')
+                    document.querySelector('nav').classList.toggle('active')}}>
+                <div className='line'></div>
+                <div className='line'></div>
+                <div className='line'></div>
+            </div>
+            <Link to="/">Главная</Link>  
+            <Link to="/counter">Счётчик</Link>  
+            <Link to="/modal">Модальное окно</Link>
+            <Link to="/quiz">Опросник</Link>
+            <Link to="/users">Список пользователей</Link>
+        </nav>
+    </>)
 }
 
 // рендеринг в корневой элемент
@@ -52,7 +74,9 @@ root.render(
                 <Route path="/modal" element={<ModalWindow />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/users" element={
-                    <Users isLoading={false}/>
+                    <>
+                        <Users isLoading={true}/>
+                    </>
                 } />
             </Routes>
         </div>
