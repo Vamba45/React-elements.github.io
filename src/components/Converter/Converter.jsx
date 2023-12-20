@@ -1,8 +1,33 @@
 import React from 'react';
+import './Converter.scss';
 
 const defaultCurrencies = ['RUB', 'USD', 'EUR', 'GBP'];
 
-export const Block = ({ value, currency, onChangeValue, onChangeCurrency }) => (
+export default function Converters() {
+  const[rates, setRates] = React.useState({})
+
+  React.useEffect(() => {
+    fetch('').
+    then((res) => res.json()).
+    then((json) => {
+      setRates(json.rates);
+      console.log(json.rates);
+    }).
+    catch((err) => {
+      console.warn(err);
+      alert('Не удалось получить информацию')
+    })
+  }, [])
+  
+  return (
+  <div className='converters'>
+    <Converter value={0} currency="RUB" onChangeCurrency={(cur) => console.log(cur)} />
+    <Converter value={0} currency="USD" />
+  </div>)
+}
+
+function Converter ({ value, currency, onChangeValue, onChangeCurrency }) { 
+  return (
   <div className="block">
     <ul className="currencies">
       {defaultCurrencies.map((cur) => (
@@ -26,5 +51,5 @@ export const Block = ({ value, currency, onChangeValue, onChangeCurrency }) => (
       type="number"
       placeholder={0}
     />
-  </div>
-);
+  </div>);
+}

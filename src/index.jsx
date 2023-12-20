@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 /* Components */
 import Counter from './components/Counter/Counter.tsx';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 import Users from './components/Users/Users.jsx';
-import Success from './components/Users/Succes.jsx';
+import Converters from './components/Converter/Converter.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -38,6 +38,7 @@ function Nav() {
                 <div className='line'></div>
                 <div className='line'></div>
             </div>
+            <Link to="/converter">Конвертер</Link>  
             <Link to="/counter">Счётчик</Link>  
             <Link to="/modal">Модальное окно</Link>
             <Link to="/quiz">Опросник</Link>
@@ -46,12 +47,16 @@ function Nav() {
     </>)
 }
 
+
 // рендеринг в корневой элемент
 root.render(
     <Router>
         <div>
             <Nav/>
             <Routes>
+                <Route path="/converter" element={
+                    <Converters/>
+                }/>
                 <Route path="/counter" element={<Counter/>}/>
                 <Route path="/modal" element={<ModalWindow/>}/>
                 <Route path="/quiz" element={<Quiz/>}/>
