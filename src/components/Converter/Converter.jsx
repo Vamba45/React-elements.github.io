@@ -4,25 +4,29 @@ import './Converter.scss';
 const defaultCurrencies = ['RUB', 'USD', 'EUR', 'GBP'];
 
 export default function Converters() {
+  const [fromCurrency, setFromCurrency] = React.useState('RUB');
+  const [toCurrency, setToCurrency] = React.useState('USD');
+  const [fromPrice, setFromPrice] = React.useState(0);
+  const [toPrice, setToPrice] = React.useState(0);
   const[rates, setRates] = React.useState({})
-
-  React.useEffect(() => {
-    fetch('').
-    then((res) => res.json()).
-    then((json) => {
-      setRates(json.rates);
-      console.log(json.rates);
-    }).
-    catch((err) => {
-      console.warn(err);
-      alert('Не удалось получить информацию')
-    })
-  }, [])
   
+  const onChaneFromPrice = (value) => {
+    setFromPrice(value);
+  }
+
+  const onChaneToPrice = (value) => {
+    setToPrice(value);
+  }
+
   return (
   <div className='converters'>
-    <Converter value={0} currency="RUB" onChangeCurrency={(cur) => console.log(cur)} />
-    <Converter value={0} currency="USD" />
+    <Converter value={0} 
+                currency={fromCurrency}
+                onChangeCurrency={setFromCurrency} 
+                onChangeValue={onChaneFromPrice}/>
+    <Converter value={0} 
+                currency={toCurrency} 
+                onChangeCurrency={setToCurrency}/>
   </div>)
 }
 
