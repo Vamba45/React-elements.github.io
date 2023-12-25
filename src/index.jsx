@@ -7,6 +7,7 @@ import Counter from './components/Counter/Counter.tsx';
 import ModalWindow from './components/ModalWindow/ModalWindow.jsx';
 import Users from './components/Users/Users.jsx';
 import Converters from './components/Converter/Converter.jsx';
+import Photos from './components/Photos/Photos.jsx';
 
 /* Styles */
 import './styles/index.scss';
@@ -38,6 +39,7 @@ function Nav() {
                 <div className='line'></div>
                 <div className='line'></div>
             </div>
+            <Link to="/photos">Галерея</Link>  
             <Link to="/converter">Конвертер</Link>  
             <Link to="/counter">Счётчик</Link>  
             <Link to="/modal">Модальное окно</Link>
@@ -54,9 +56,8 @@ root.render(
         <div>
             <Nav/>
             <Routes>
-                <Route path="/converter" element={
-                    <Converters/>
-                }/>
+                <Route path="/photos" element={<Photos/>}/>
+                <Route path="/converter" element={<Converters/>}/>
                 <Route path="/counter" element={<Counter/>}/>
                 <Route path="/modal" element={<ModalWindow/>}/>
                 <Route path="/quiz" element={<Quiz/>}/>
