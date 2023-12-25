@@ -16,6 +16,8 @@ function Collection({ name, images }) {
 }
 
 function Photos() {
+  const [categories, setCategories] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState('');
   const [collections, setCollections] = React.useState([]);
   
   React.useEffect(() => { 
@@ -23,6 +25,7 @@ function Photos() {
     .then((res) => res.json())
     .then((json) => {
       setCollections(json[0]["collections"])
+      setCategories(json[0]["categories"])
     })
     .catch((err) => {
       console.warn(err);
@@ -35,18 +38,25 @@ function Photos() {
       <h1>Моя коллекция фотографий</h1>
       <div className="top">
         <ul className="tags">
-          <li className="active">Все</li>
-          <li>Горы</li>
-          <li>Море</li>
-          <li>Архитектура</li>
-          <li>Города</li>
+          {
+            categories.map((obj) => (
+              <li key={obj.name}>{obj.name}</li>
+            ))
+          }
         </ul>
-        <input className="search-input" placeholder="Поиск по названию" />
+        <input value={searchValue} 
+                onChange={(e) => setSearchValue(e.target.value)}
+                className="search-input" placeholder="Поиск по названию" />
       </div>
       <div className="content">
         {
-          collections.map((obj) => (
+          collections
+          .filter((obj) => {
+            return obj.name.toLowerCase().includes(searchValue.toLowerCase());
+          })
+          .map((obj, index) => (
             <Collection
+              key={index}
               name={obj.name}
               images={obj.photos}/>
           ))
