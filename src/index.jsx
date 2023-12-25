@@ -53,7 +53,7 @@ function Nav() {
 // рендеринг в корневой элемент
 root.render(
     <Router>
-        <div>
+        <>
             <Nav/>
             <Routes>
                 <Route path="/photos" element={<Photos/>}/>
@@ -63,6 +63,6 @@ root.render(
                 <Route path="/quiz" element={<Quiz/>}/>
                 <Route path="/" element={<Users isLoading={true}/>}/>
             </Routes>
-        </div>
+        </>
     </Router>
 );
