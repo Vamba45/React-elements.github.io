@@ -8,29 +8,42 @@ export default function Converters() {
   const [toCurrency, setToCurrency] = React.useState('USD');
   const [fromPrice, setFromPrice] = React.useState(0);
   const [toPrice, setToPrice] = React.useState(0);
-  const[rates, setRates] = React.useState({})
+  const [rates, setRates] = React.useState({
+    "RUB": 10,
+    "USD": 31,
+    "EUR": 45,
+    "GBP": 101,
+  })
   
   const onChaneFromPrice = (value) => {
+    const result = value * (rates[toCurrency] / rates[fromCurrency])
+
+    setToPrice(result);
     setFromPrice(value);
   }
 
-  const onChaneToPrice = (value) => {
-    setToPrice(value);
-  }
+  React.useEffect(() => {
+     onChaneFromPrice(fromPrice)
+  }, [fromCurrency])
+  
+  React.useEffect(() => {
+    onChaneFromPrice(fromPrice)
+  }, [toCurrency])
 
   return (
   <div className='converters'>
-    <Converter value={0} 
+    <Converter value={fromPrice} 
                 currency={fromCurrency}
                 onChangeCurrency={setFromCurrency} 
                 onChangeValue={onChaneFromPrice}/>
-    <Converter value={0} 
+    <Converter value={toPrice} 
                 currency={toCurrency} 
-                onChangeCurrency={setToCurrency}/>
+                onChangeCurrency={setToCurrency}
+                onChangeValue={() => {}}/>
   </div>)
 }
 
-function Converter ({ value, currency, onChangeValue, onChangeCurrency }) { 
+function Converter ({ value, currency, onChangeValue, onChangeCurrency, readonly }) { 
   return (
   <div className="block">
     <ul className="currencies">
