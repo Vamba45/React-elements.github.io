@@ -16,12 +16,13 @@ function Collection({ name, images }) {
 }
 
 function Photos() {
+  const [categoryId, setCategoryId] = React.useState(0);
   const [categories, setCategories] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [collections, setCollections] = React.useState([]);
   
   React.useEffect(() => { 
-    fetch('https://65893844324d41715258975f.mockapi.io/react/photos/photos')
+    fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos`)
     .then((res) => res.json())
     .then((json) => {
       setCollections(json[0]["collections"])
@@ -31,7 +32,7 @@ function Photos() {
       console.warn(err);
       alert('Ошибка при получении данных')
     })
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="Photos">
@@ -39,8 +40,12 @@ function Photos() {
       <div className="top">
         <ul className="tags">
           {
-            categories.map((obj) => (
-              <li key={obj.name}>{obj.name}</li>
+            categories.map((obj, i) => (
+              <li
+                onClick={() => setCategoryId(i)}
+                className={categoryId === i ? 'active' : ''}
+                key={obj.name}>
+                {obj.name}</li>
             ))
           }
         </ul>
