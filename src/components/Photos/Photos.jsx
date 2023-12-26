@@ -1,6 +1,24 @@
 import React from 'react';
 import './Photos.scss';
 
+const cats = [
+  {
+    "name": "Все"
+  },
+  {
+    "name": "Море"
+  },
+  {
+    "name": "Горы"
+  },
+  {
+    "name": "Архитектура"
+  },
+  {
+    "name": "Города"
+  }
+]
+
 function Collection({ name, images }) {
   return (
     <div className="collection">
@@ -17,16 +35,14 @@ function Collection({ name, images }) {
 
 function Photos() {
   const [categoryId, setCategoryId] = React.useState(0);
-  const [categories, setCategories] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [collections, setCollections] = React.useState([]);
   
   React.useEffect(() => { 
-    fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos`)
+    fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos?${categoryId ? `category=${categoryId}` : ''}`)
     .then((res) => res.json())
     .then((json) => {
-      setCollections(json[0]["collections"])
-      setCategories(json[0]["categories"])
+      setCollections(json)
     })
     .catch((err) => {
       console.warn(err);
@@ -40,9 +56,11 @@ function Photos() {
       <div className="top">
         <ul className="tags">
           {
-            categories.map((obj, i) => (
+            cats.map((obj, i) => (
               <li
-                onClick={() => setCategoryId(i)}
+                onClick={() => {
+                  setCategoryId(i)
+                }}
                 className={categoryId === i ? 'active' : ''}
                 key={obj.name}>
                 {obj.name}</li>
@@ -55,8 +73,7 @@ function Photos() {
       </div>
       <div className="content">
         {
-          collections
-          .filter((obj) => {
+          collections.filter((obj) => {
             return obj.name.toLowerCase().includes(searchValue.toLowerCase());
           })
           .map((obj, index) => (
