@@ -35,12 +35,16 @@ function Collection({ name, images }) {
 
 function Photos() {
   const [categoryId, setCategoryId] = React.useState(0);
+  const [page, setPage] = React.useState(1)
   const [isLoading, setIsLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
   const [collections, setCollections] = React.useState([]);
   
-  React.useEffect(() => { 
-    fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos?${categoryId ? `category=${categoryId}` : ''}`)
+  React.useEffect(() => {
+    setIsLoading(true);
+    const category = categoryId ? `category=${categoryId}` : '';
+
+    fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos?page=${page}&limit=3&${category}`)
     .then((res) => res.json())
     .then((json) => {
       setCollections(json)
@@ -49,7 +53,7 @@ function Photos() {
       console.warn(err);
       alert('Ошибка при получении данных')
     }).finally(() => setIsLoading(false))
-  }, [categoryId]);
+  }, [categoryId, page]);
 
   return (
     <div className="Photos">
@@ -88,9 +92,14 @@ function Photos() {
         }
       </div>
       <ul className="pagination">
-        <li>1</li>
-        <li className="active">2</li>
-        <li>3</li>
+        {
+          [... Array(5)].map((el, i) => (
+            <li onClick={() => setPage(i + 1)}
+                className={page === (i + 1) ? 'active' : ''}>
+              {i + 1}
+            </li>
+          ))
+        }
       </ul>
     </div>
   );
