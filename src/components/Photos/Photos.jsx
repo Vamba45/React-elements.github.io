@@ -35,6 +35,7 @@ function Collection({ name, images }) {
 
 function Photos() {
   const [categoryId, setCategoryId] = React.useState(0);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
   const [collections, setCollections] = React.useState([]);
   
@@ -47,7 +48,7 @@ function Photos() {
     .catch((err) => {
       console.warn(err);
       alert('Ошибка при получении данных')
-    })
+    }).finally(() => setIsLoading(false))
   }, [categoryId]);
 
   return (
@@ -72,16 +73,18 @@ function Photos() {
                 className="search-input" placeholder="Поиск по названию" />
       </div>
       <div className="content">
-        {
-          collections.filter((obj) => {
-            return obj.name.toLowerCase().includes(searchValue.toLowerCase());
-          })
-          .map((obj, index) => (
-            <Collection
-              key={index}
-              name={obj.name}
-              images={obj.photos}/>
-          ))
+        {isLoading ? (
+            <h2>Идёт загрузка ...</h2>
+          ) : (
+            collections.filter((obj) => {
+              return obj.name.toLowerCase().includes(searchValue.toLowerCase());
+            })
+            .map((obj, index) => (
+              <Collection
+                key={index}
+                name={obj.name}
+                images={obj.photos}/>))
+          )
         }
       </div>
       <ul className="pagination">
